@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const Navbar = () => {
+const AgroBot = () => {
   return (
     <View>
-      <Text></Text>
+      <Text>AgroBot</Text>
     </View>
   )
 }
 
-export default Navbar
+export default AgroBot
 
 const styles = StyleSheet.create({})
