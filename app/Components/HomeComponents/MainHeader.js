@@ -1,18 +1,17 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import Material from "react-native-vector-icons/MaterialCommunityIcons";
-
+import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 const MainHeader = ({title}) => {
   return (
     <View style={styles.header}>
-      <Material name={"robot"} size={25} />
+      <FontAwesome5 name="" size={24} color="black" />
       <Text style={styles.title}>{title}</Text>
-      <Material name={"robot"} size={25} />
+      <FontAwesome5 name="user-circle" size={24} color="#fff" />
     </View>
   );
 }
 
-export default MainHeader
+export default MainHeader;
 
 const styles = StyleSheet.create({
   header: {
@@ -20,11 +19,13 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
-    height: 100,
-    backgroundColor: "#00d7aa",
+    height: 140,
+    backgroundColor: "#0fa284",
+    borderBottomRightRadius: 40,
+    borderBottomLeftRadius: 40,
   },
-  title:{
-    fontSize:20,
-    
-  }
-});
+  title: {
+    fontSize: 30,
+    color:'white',
+  },
+}); 

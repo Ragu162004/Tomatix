@@ -70,7 +70,7 @@ export default ({ item, accessibilityState, onPress }) => {
               height: 50,
               borderRadius: 100,
               position: "absolute",
-              backgroundColor: "#00d782",
+              backgroundColor: "#00d7aa",
             },
             scaleStyles,
           ]}
