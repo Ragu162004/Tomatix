@@ -4,7 +4,7 @@ import React from 'react'
 const AgroBot = () => {
   return (
     <View>
-      <Text>AgroB   ot</Text>
+      <Text>AgroBot</Text>
     </View>
   )
 }
