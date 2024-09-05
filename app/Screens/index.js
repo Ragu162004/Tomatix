@@ -4,3 +4,4 @@ export { default as CommunityChat } from "./CommunityChat";
 export { default as Dukaan } from "./Dukaan";
 export { default as Profile } from "./Profile";
 export { default as MarketIntelligence } from "./MarketIntelligence";
+export { default as HealthCare } from "./HealthCare"
