@@ -11,9 +11,6 @@ const MainHeader = ({ title }) => {
           <Text style={styles.namecard}>Jessica Jones</Text>
         </View>
       </View>
-      {/* <View style={styles.overlay}>
-        
-      </View> */}
     </View>
   );
 }
@@ -30,16 +27,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#0fa284",
     borderBottomRightRadius: 27,
     borderBottomLeftRadius: 27,
-  },
-  overlay: {
-    height: 150,
-    width: '80%',
-    top: 60,
-    borderRadius: 20,
-    shadowColor: '#171717',
-    shadowOffset: { width: -2, height: 4 },
-    shadowOpacity: 0.2,
-    backgroundColor: '#CCE6EE',
+    borderTopRightRadius: 10,
+    borderTopLeftRadius: 10,
   },
   user: {
     display:'flex',
