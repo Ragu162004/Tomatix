@@ -1,6 +1,7 @@
 // tabs.js
-import { Dukaan, AgroBot, CommunityChat, MarketIntelligence } from "../Screens";
+import { CommunityChat, MarketIntelligence, WeatherForecast } from "../Screens";
 import { HomeStack } from "./AppStacks/HomeStack";
+import {DukaanStack} from './AppStacks/DukaanStack';
 
 export const tabs = [
   {
@@ -15,7 +16,7 @@ export const tabs = [
     title: "Dukaan",
     screen: "Dukaan",
     icon: "storefront-outline",
-    Component: Dukaan,
+    Component: DukaanStack,
   },
   {
     id: 3,
@@ -34,8 +35,8 @@ export const tabs = [
   {
     id: 5,
     title: "Agro Bot",
-    screen: "Bot",
+    screen: "Weather",
     icon: "robot-outline",
-    Component: AgroBot,
+    Component: WeatherForecast,
   },
 ];
