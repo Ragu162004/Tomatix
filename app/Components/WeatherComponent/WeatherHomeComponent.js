@@ -1,9 +1,20 @@
+/*import { View, Text, Alert, SafeAreaView, ActivityIndicator, ScrollView, RefreshControl,StyleSheet } from 'react-native';
+
+const WeatherHomeComponent = ({current}) =>
+{
+    return(
+        <View>
+                    <Text style={styles.weatherText}>Condition: <Text style={styles.WeatherCondition}>{current.condition.text}</Text></Text>
+                    <Text style={styles.weatherText}>Temperature: {current.temp_c}°C</Text>
+                </View>
+    )
+}*/
 import React, { useEffect, useState } from 'react';
 import { View, Text, Alert, SafeAreaView, ActivityIndicator, ScrollView, RefreshControl,StyleSheet } from 'react-native';
 import * as Location from 'expo-location';
 const weatherapi = 'a52ce42073604dd3bbc132923241508';
 
-const WeatherForecast = () => {
+const WeatherHomeComponent = () => {
     const [forecast, setForecast] = useState(null);
     const [refreshing, setRefreshing] = useState(false);
     const [loading, setLoading] = useState(true);
@@ -89,7 +100,7 @@ const WeatherForecast = () => {
     );
 };
 
-export default WeatherForecast;
+export default WeatherHomeComponent;
 
 const styles = StyleSheet.create({
     container: {

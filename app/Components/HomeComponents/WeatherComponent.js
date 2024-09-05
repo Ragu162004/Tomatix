@@ -1,10 +1,12 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React from 'react';
+import { WeatherForecast } from '../../Screens';
 
 const WeatherComponent = () => {
     return (
-        <View>
+        <View style={styles.page}>
             <View style={styles.overlay}>
+                <WeatherForecast/>
             </View>
         </View>
     )
@@ -22,5 +24,13 @@ const styles = StyleSheet.create({
         shadowOffset: { width: -2, height: 4 },
         shadowOpacity: 0.2,
         backgroundColor: '#CCE6EE',
+        alignContent:'center',
+        textAlign:'center',
+        justifyContent:'center',
+        fontWeight:'200'
     },
+    page:{
+        justifyContent:'center',
+        alignItems:'center'
+    }
 })
