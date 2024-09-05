@@ -7,7 +7,7 @@ const MainHeader = ({ title }) => {
       <View style={styles.user}>
         <View style={styles.circle}></View>
         <View style={styles.message}>
-          <Text style={styles.greeting}>Welcome,</Text>
+          <Text style={styles.greeting}>Welcome, </Text>
           <Text style={styles.namecard}>Jessica Jones</Text>
         </View>
       </View>
