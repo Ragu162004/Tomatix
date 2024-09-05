@@ -1,8 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Pressable, SafeAreaView, ScrollView, TextInput } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { Picker } from '@react-native-picker/picker';
 import { React, useState, useEffect } from 'react';
 
@@ -185,46 +182,8 @@ function FertilizerAdd() {
   );
 }
 
-const Tomato = createNativeStackNavigator();
-function TomatoScreen() {
-  return (
-    <Tomato.Navigator>
-      <Tomato.Screen name="Tomato" component={TomatoView} />
-      <Tomato.Screen name="tomatoAdd" component={TomatoAdd} />
-    </Tomato.Navigator>
-  );
-}
 
-const Fertilizer = createNativeStackNavigator();
-function FertilizerScreen() {
-  return (
-    <Fertilizer.Navigator>
-      <Fertilizer.Screen name="Fertilizer" component={FertilizerView} />
-      <Fertilizer.Screen name="FertilizerAdd" component={FertilizerAdd} />
-    </Fertilizer.Navigator>
-  );
-}
-
-const Tab = createMaterialTopTabNavigator();
-
-export default function App() {
-  return (
-    <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={{
-          tabBarLabelStyle: { fontSize: 14, fontWeight: 'bold' },
-          tabBarIndicatorStyle: { backgroundColor: '#00F', height: 3 },
-          tabBarStyle: { backgroundColor: '#FFF', marginTop: 55 },
-          tabBarActiveTintColor: '#00F',
-          tabBarInactiveTintColor: '#888',
-        }}
-      >
-        <Tab.Screen name="Fertilizer" component={FertilizerScreen} />
-        <Tab.Screen name="Tomato" component={TomatoScreen} />
-      </Tab.Navigator>
-    </NavigationContainer>
-  );
-}
+export {TomatoAdd,TomatoView,FertilizerAdd,FertilizerView};
 
 const styles = StyleSheet.create({
   safeArea: {
