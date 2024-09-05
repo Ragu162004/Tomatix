@@ -1,5 +1,5 @@
 // tabs.js
-import { CommunityChat, MarketIntelligence, WeatherForecast } from "../Screens";
+import { CommunityChat, HealthCare, MarketIntelligence, WeatherForecast } from "../Screens";
 import { HomeStack } from "./AppStacks/HomeStack";
 import {DukaanStack} from './AppStacks/DukaanStack';
 
@@ -37,6 +37,6 @@ export const tabs = [
     title: "Agro Bot",
     screen: "Weather",
     icon: "robot-outline",
-    Component: WeatherForecast,
+    Component: HealthCare,
   },
 ];

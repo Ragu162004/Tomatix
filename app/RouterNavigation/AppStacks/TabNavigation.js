@@ -32,8 +32,8 @@ const TabNavigation = ({ tabs }) => {
 const styles = StyleSheet.create({
   tabBar: {
     height: 90,
-    position: "absolute",
     bottom: 25,
+    position:"absolute",
     marginHorizontal: 16,
     borderRadius: 16,
     justifyContent: "center",
