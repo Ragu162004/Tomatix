@@ -1,12 +1,19 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
-const MainHeader = ({title}) => {
+const MainHeader = ({ title }) => {
   return (
     <View style={styles.header}>
-      <FontAwesome5 name="" size={24} color="black" />
-      <Text style={styles.title}>{title}</Text>
-      <FontAwesome5 name="user-circle" size={24} color="#fff" />
+      <View style={styles.user}>
+        <View style={styles.circle}></View>
+        <View style={styles.message}>
+          <Text style={styles.greeting}>Welcome,</Text>
+          <Text style={styles.namecard}>Jessica Jones</Text>
+        </View>
+      </View>
+      {/* <View style={styles.overlay}>
+        
+      </View> */}
     </View>
   );
 }
@@ -19,13 +26,43 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
-    height: 140,
+    height: 148,
     backgroundColor: "#0fa284",
-    borderBottomRightRadius: 40,
-    borderBottomLeftRadius: 40,
+    borderBottomRightRadius: 27,
+    borderBottomLeftRadius: 27,
   },
-  title: {
-    fontSize: 30,
-    color:'white',
+  overlay: {
+    height: 150,
+    width: '80%',
+    top: 60,
+    borderRadius: 20,
+    shadowColor: '#171717',
+    shadowOffset: { width: -2, height: 4 },
+    shadowOpacity: 0.2,
+    backgroundColor: '#CCE6EE',
   },
+  user: {
+    display:'flex',
+    flexDirection:'row',
+    width:'60%',
+    justifyContent:'space-around',
+    alignItems:'center',
+  },
+  greeting: {
+    color: '#fff',
+    fontWeight: '900',
+    fontSize: 27,
+  },
+  namecard:{
+    color: '#fff',
+    fontWeight: '500',
+    fontSize: 20,
+  },
+  circle: {
+    height: 60,
+    width: 60,
+    borderRadius: 50,
+    backgroundColor: "#fff",
+  }
+
 }); 

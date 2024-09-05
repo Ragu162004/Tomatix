@@ -8,7 +8,8 @@ import { tabs } from "./tabs";
 const BaseStack = () => {
   return (
     <NavigationContainer>
-      <TabNavigation tabs={tabs} /> 
+      <TabNavigation tabs={tabs} />
+      <StatusBar hidden={true}/> 
     </NavigationContainer>
   );
 };
