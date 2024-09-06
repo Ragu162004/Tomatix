@@ -215,7 +215,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     margin: '2%',
     padding: '2%',
-    width: '100%',
+    width: '80%',
   },
   text: {
     margin: '4%',

@@ -34,4 +34,8 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         alignItems:'center'
     },
+    page:{
+        justifyContent:'center',
+        alignItems:'center'
+    }
 })

@@ -11,6 +11,7 @@ const HomeStack = () => {
       }}
     >
       <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="WeatherForecast" component={Home} />
     </Stack.Navigator>
   );
 };
