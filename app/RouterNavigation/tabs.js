@@ -20,8 +20,8 @@ export const tabs = [
   },
   {
     id: 3,
-    title: "Home",
-    screen: "Home",
+    title: "Home Tab",
+    screen: "Home Tab",
     icon: "home",
     Component: HomeStack,
   },
