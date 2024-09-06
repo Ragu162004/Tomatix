@@ -49,13 +49,56 @@ const WeatherForecast = () => {
 };
 
 const styles = StyleSheet.create({
-    container: { flex: 1 },
-    loading: { flex: 1, justifyContent: 'center', alignItems: 'center' },
-    scrollContainer: { padding: 20 },
-    title: { fontSize: 24, fontWeight: 'bold', marginBottom: 10 },
-    locationText: { fontSize: 18, marginBottom: 10 },
-    weatherContainer: { marginTop: 20 },
-    weatherText: { fontSize: 18 },
+    container: {
+        flex: 1,
+        backgroundColor: 'lightblue',
+        padding: 20,
+    },
+    loading: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    scrollContainer: {
+        flexGrow: 1,
+        justifyContent: 'center',
+        paddingHorizontal: 20,
+    },
+    title: {
+        textAlign: 'center',
+        fontSize: 36,
+        fontWeight: 'bold',
+        color: '#C84B31',
+        marginBottom: 20,
+    },
+    locationText: {
+        textAlign: 'center',
+        fontSize: 18,
+        color: '#333',
+        marginBottom: 10,
+    },
+    weatherContainer: {
+        margin: 20,
+        padding: 30,
+        backgroundColor: '#f0f8ff',
+        borderRadius: 8,
+        shadowColor: '#000',
+        shadowOffset: { width: 4, height: 2 },
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        elevation: 5,
+
+    },
+    weatherText: {
+        fontSize: 20,
+        color: '#333',
+        marginBottom: 10,
+        textAlign: 'center',
+        fontWeight: 500
+    },
+    WeatherCondition: {
+        fontWeight: 800
+    }
 });
 
 export default WeatherForecast;
