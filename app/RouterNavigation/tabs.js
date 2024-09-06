@@ -37,6 +37,6 @@ export const tabs = [
     title: "Agro Bot",
     screen: "Weather",
     icon: "robot-outline",
-    Component: HealthCare,
+    Component: WeatherForecast,
   },
 ];
