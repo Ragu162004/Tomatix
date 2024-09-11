@@ -9,7 +9,7 @@ export const tabs = [
     title: "Messages",
     screen: "Chat",
     icon: "message-text",
-    Component: CommunityChat,
+    Component: MarketIntelligence,
   },
   {
     id: 2,
@@ -30,13 +30,13 @@ export const tabs = [
     title: "Price",
     screen: "Price",
     icon: "currency-inr",
-    Component: MarketIntelligence,
+    Component: HealthCare,
   },
   {
     id: 5,
     title: "Agro Bot",
     screen: "Weather",
     icon: "robot-outline",
-    Component: HealthCare,
+    Component: WeatherForecast,
   },
 ];
