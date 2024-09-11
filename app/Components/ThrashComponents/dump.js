@@ -11,6 +11,21 @@ const screenOptions = {
     borderRadius: 30,
     height: 80,
   },
+  unfocused: {
+    alignItems: "center",
+    justifyContent: "center",
+    height: 100,
+    width: 100,
+  },
+
+  focused: {
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#004f4a",
+    height: "80%",
+    width: "80%",
+    borderRadius: 30,
+  },
 };  
   
   
@@ -119,18 +134,3 @@ const screenOptions = {
     </Tab.Navigator>
 
 //styles
-unfocused: {
-    alignItems: "center",
-    justifyContent: "center",
-    height: 100,
-    width: 100,
-  },
-
-  focused: {
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#004f4a",
-    height: "80%",
-    width: "80%",
-    borderRadius: 30,
-  },

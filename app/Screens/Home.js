@@ -16,6 +16,6 @@ export { Home };
 
 const styles = StyleSheet.create({
   mainPage: {
-
+    
   }
 })

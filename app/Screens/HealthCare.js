@@ -48,5 +48,4 @@ function HealthCare() {
     </PaperProvider>
   );
 }
-
 export default HealthCare;
