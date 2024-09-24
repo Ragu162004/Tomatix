@@ -1,14 +1,21 @@
 import React from 'react';
 import { View, Text, StyleSheet, Dimensions, ScrollView, TouchableOpacity } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import '../Language/language';
 
 const ContainerComponent = ({ navigation }) => {
+  const {t,i18n} = useTranslation();
+  const changeLanguage = (lng) =>{
+    i18n.changeLanguage(lng);
+  }
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
       <View style={styles.container}>
         <Text style={styles.header}>Welcome to Tomatix</Text>
         <Text style={styles.text}>
-          Your go-to platform for all things tomato! Discover an extensive range of tomato varieties with detailed care instructions, manage your fertilizer needs effortlessly, and access real-time insights to optimize your cultivation practices. Engage with our interactive tools to get personalized recommendations and stay updated with expert tips. Dive in now and transform your tomato farming experience with Tomatix!
+          {t('appFeatureText')}
         </Text>
+        <Text>{t('welcome')}</Text>
       </View>
     </ScrollView>
   );
