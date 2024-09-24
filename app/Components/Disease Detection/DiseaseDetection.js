@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Button, Image, Alert } from 'react-native';
-import * as ImagePicker from 'expo-image-picker';
+import * as ImagePicker from 'expo-image-picker'; 
 import { Platform } from 'react-native';
 
 const DiseaseDetection = () => {
@@ -24,13 +24,13 @@ const DiseaseDetection = () => {
         mediaTypes: ImagePicker.MediaTypeOptions.Images,
         allowsEditing: true,
         quality: 1,
-        base64: true, 
+        base64: true,
       });
 
       if (!result.canceled) {
-        setImageUrl(result.assets[0].uri); 
-        setBase64Image(result.assets[0].base64);
-        uploadImage(result.assets[0].base64);
+        setImageUrl(result.assets[0].uri);
+        setBase64Image(result.assets[0].base64); 
+        uploadImage(result.assets[0].base64); 
       }
     } catch (error) {
       console.error('Error selecting image:', error);
@@ -39,7 +39,7 @@ const DiseaseDetection = () => {
   };
 
   const uploadImage = async (base64Image) => {
-    const apiUrl = 'http://192.168.206.201:5000/predict';
+    const apiUrl = 'http://192.168.206.201:5000/predict'; 
     const base64Data = `data:image/jpeg;base64,${base64Image}`;
 
     try {
@@ -113,4 +113,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DiseaseDetection;
+export  { DiseaseDetection };
