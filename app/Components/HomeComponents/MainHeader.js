@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Modal, TouchableHighlight } from 'react-native';
-import FontAwesome5 from '@expo/vector-icons/FontAwesome5'; // For the User Icon
+import FontAwesome5 from '@expo/vector-icons/FontAwesome5'; 
 import { useTranslation } from 'react-i18next';
-import '../Language/language'; // Language setup assumed to be here
+import '../Language/language'; 
 
 const MainHeader = () => {
   const { t, i18n } = useTranslation();
@@ -27,7 +27,6 @@ const MainHeader = () => {
 
   return (
     <View style={styles.headerContainer}>
-      {/* User Icon on the Left */}
       <TouchableOpacity style={styles.userContainer}>
         <View style={styles.circle}>
           <FontAwesome5 name="user" size={24} color="#fff" />
@@ -86,8 +85,8 @@ const styles = StyleSheet.create({
   circle: {
     width: 60,
     height: 60,
-    borderRadius: 30, // Full circle
-    backgroundColor: 'rgba(255, 255, 255, 0.2)', // Semi-transparent circle
+    borderRadius: 30, 
+    backgroundColor: 'rgba(255, 255, 255, 0.2)', 
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -103,8 +102,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 10,
     paddingHorizontal: 15,
-    backgroundColor: 'rgba(255, 255, 255, 0.2)', // Semi-transparent for the button
-    borderRadius: 20, // Rounded button
+    backgroundColor: 'rgba(255, 255, 255, 0.2)', 
+    borderRadius: 20, 
   },
   languageText: {
     color: '#fff',
