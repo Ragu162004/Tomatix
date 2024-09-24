@@ -17,9 +17,9 @@ i18n.use(initReactI18next).init({
             }
         }
     },
-    lng: "ta",  // Set default language
-    fallbackLng: "en",  // Fallback to English if translation not found
+    lng: "en", 
+    fallbackLng: "en",  
     interpolation: {
-        escapeValue: false,  // React already escapes values to prevent XSS
+        escapeValue: false, 
     }
 });
