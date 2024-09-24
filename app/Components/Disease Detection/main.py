@@ -10,7 +10,6 @@ from tensorflow.keras.models import load_model
 app = Flask(__name__)
 CORS(app)
 
-# Load your trained model
 model = load_model('tomato_disease_model.h5')
 
 class_names = {
@@ -26,9 +25,9 @@ class_names = {
 }
 
 def predict_image(img):
-    img = img.resize((224, 224))  # Resize image to model input size
-    img_array = np.array(img) / 255.0  # Normalize image
-    img_array = np.expand_dims(img_array, axis=0)  # Expand dimensions to match model input
+    img = img.resize((224, 224))
+    img_array = np.array(img) / 255.0 
+    img_array = np.expand_dims(img_array, axis=0) 
 
     predictions = model.predict(img_array)
     predicted_class_index = np.argmax(predictions[0])
@@ -42,12 +41,12 @@ def predict():
         return jsonify({'error': 'No image data provided'}), 400
 
     try:
-        # Decode the Base64 image data
+        
         image_data = data['image'].split(",")[1]
         image_bytes = base64.b64decode(image_data)
         img = Image.open(BytesIO(image_bytes)).convert('RGB')
 
-        # Predict the disease from the image
+        
         prediction = predict_image(img)
 
         return jsonify({'prediction': prediction})
