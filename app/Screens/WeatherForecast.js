@@ -1,10 +1,13 @@
 import React from 'react';
 import { View, Text, SafeAreaView, ActivityIndicator, ScrollView, RefreshControl, StyleSheet } from 'react-native';
 import useWeatherForecast from '../hooks/useWeatherForecast';
+import { useTranslation } from 'react-i18next';
+import '../Components/Language/language';
 
 const WeatherForecast = () => {
     const { forecast, loading, refreshing, loadForecast } = useWeatherForecast();
 
+    const {t,i18n} = useTranslation();
     if (loading) {
         return (
             <SafeAreaView style={styles.loading}>
@@ -16,7 +19,7 @@ const WeatherForecast = () => {
     if (!forecast) {
         return (
             <SafeAreaView style={styles.loading}>
-                <Text>Unable to fetch weather data.</Text>
+                <Text>{t('unable')}</Text>
             </SafeAreaView>
         );
     }
@@ -35,13 +38,13 @@ const WeatherForecast = () => {
                 }
                 contentContainerStyle={styles.scrollContainer}
             >
-                <Text style={styles.title}>Current Weather</Text>
+                <Text style={styles.title}>{t('weatherCondition')}</Text>
                 <Text style={styles.locationText}>
-                    Your Location: {location.name}, {location.region}
+                    {t('yourLocation')}: {location.name}, {location.region}
                 </Text>
                 <View style={styles.weatherContainer}>
-                    <Text style={styles.weatherText}>Condition: {current.condition.text}</Text>
-                    <Text style={styles.weatherText}>Temperature: {current.temp_c}°C</Text>
+                    <Text style={styles.weatherText}>{t('weatherCondition')}: {current.condition.text}</Text>
+                    <Text style={styles.weatherText}>{t('temperature')}: {current.temp_c}°C</Text>
                 </View>
             </ScrollView>
         </SafeAreaView>

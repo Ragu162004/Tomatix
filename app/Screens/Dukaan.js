@@ -3,11 +3,14 @@ import { StyleSheet, Text, View, Pressable, SafeAreaView, ScrollView, TextInput,
 import { Picker } from '@react-native-picker/picker';
 import React, { useState, useEffect, useCallback } from 'react';
 import { useFocusEffect } from '@react-navigation/native'; // Import useFocusEffect
+import { useTranslation } from 'react-i18next';
+import '../Components/Language/language';
 
 // TomatoView Component
 function TomatoView({ navigation }) {
   const [tomatoes, setTomatoes] = useState([]);
   const [loading, setLoading] = useState(true);
+  const {t,i18n} = useTranslation();
 
   const fetchTomatoes = async () => {
     try {
@@ -31,24 +34,24 @@ function TomatoView({ navigation }) {
     <SafeAreaView style={styles.safeArea}>
       <StatusBar style="light" />
       <Pressable style={styles.button} onPress={() => navigation.navigate('TomatoAdd')}>
-        <Text style={styles.buttonText}>Sell Tomatoes</Text>
+        <Text style={styles.buttonText}>{t('sellTomatoes')}</Text>
       </Pressable>
       {loading ? (
         <ActivityIndicator size="large" color="#ff6347" />
       ) : (
         <ScrollView style={styles.content}>
           {tomatoes.length ? (
-            tomatoes.map((t, index) => (
+            tomatoes.map((i, index) => (
               <View key={index} style={styles.tomatoCard}>
-                <Text style={styles.tomatoName}>{t.TomatoName}</Text>
-                <Text>{t.quantity} Kg</Text>
-                <Text>Rs. {t.price} /kg</Text>
-                <Text>{t.state}</Text>
-                <Text>{t.contact}</Text>
+                <Text style={styles.tomatoName}>{i.TomatoName}</Text>
+                <Text>{i.quantity} {t('kg')}</Text>
+                <Text>{t('rs')}. {i.price} /{t('kg')}</Text>
+                <Text>{i.state}</Text>
+                <Text>{i.contact}</Text>
               </View>
             ))
           ) : (
-            <Text>No tomatoes available</Text>
+            <Text>{t('noTomato')}</Text>
           )}
         </ScrollView>
       )}
@@ -64,6 +67,7 @@ function TomatoAdd({ navigation }) {
   const [state, setState] = useState('Tamil Nadu');
   const [contact, setContact] = useState('');
   const [loading, setLoading] = useState(false);
+  const {t,i18n} = useTranslation();
 
   const submitTomato = async () => {
     if (!tomatoName || !quantity || !price || !contact) {
@@ -100,27 +104,27 @@ function TomatoAdd({ navigation }) {
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar style="light" />
-      <Text style={styles.boldText}>Only Bulk Orders</Text>
-      <Text>Tomato Order Name</Text>
+      <Text style={styles.boldText}>{t('bigOrders')}</Text>
+      <Text>{t('tomatoOrderName')}</Text>
       <TextInput style={styles.input} value={tomatoName} onChangeText={setTomatoName} />
-      <Text>Quantity</Text>
+      <Text>{t('quantity')}</Text>
       <TextInput style={styles.input} value={quantity} onChangeText={setQuantity} keyboardType="numeric" />
-      <Text>Price per Kg</Text>
+      <Text>{t('pricePerKg')}</Text>
       <TextInput style={styles.input} value={price} onChangeText={setPrice} keyboardType="numeric" />
-      <Text>State</Text>
+      <Text>{t('state')}</Text>
       <Picker selectedValue={state} onValueChange={(itemValue) => setState(itemValue)} style={styles.input}>
         <Picker.Item label="Tamil Nadu" value="Tamil Nadu" />
         <Picker.Item label="Kerala" value="Kerala" />
         <Picker.Item label="Karnataka" value="Karnataka" />
         <Picker.Item label="Maharashtra" value="Maharashtra" />
       </Picker>
-      <Text>Contact</Text>
+      <Text>{t('contact')}</Text>
       <TextInput style={styles.input} value={contact} onChangeText={setContact} keyboardType="numeric" />
       {loading ? (
         <ActivityIndicator size="large" color="#ff6347" />
       ) : (
         <Pressable style={styles.button} onPress={submitTomato}>
-          <Text style={styles.buttonText}>Submit</Text>
+          <Text style={styles.buttonText}>{t('submit')}</Text>
         </Pressable>
       )}
     </SafeAreaView>
@@ -131,6 +135,7 @@ function TomatoAdd({ navigation }) {
 function FertilizerView({ navigation }) {
   const [fertilizers, setFertilizers] = useState([]);
   const [loading, setLoading] = useState(true);
+  const {t,i18n} = useTranslation();
 
   const fetchFertilizers = async () => {
     try {
@@ -154,7 +159,7 @@ function FertilizerView({ navigation }) {
     <SafeAreaView style={styles.safeArea}>
       <StatusBar style="light" />
       <Pressable style={styles.button} onPress={() => navigation.navigate('FertilizerAdd')}>
-        <Text style={styles.buttonText}>Add Fertilizer</Text>
+        <Text style={styles.buttonText}>{t('addFertilizer')}</Text>
       </Pressable>
       {loading ? (
         <ActivityIndicator size="large" color="#32cd32" />
@@ -170,7 +175,7 @@ function FertilizerView({ navigation }) {
               </View>
             ))
           ) : (
-            <Text>No fertilizers available</Text>
+            <Text>{t('noFertilizer')}</Text>
           )}
         </ScrollView>
       )}
@@ -185,6 +190,7 @@ function FertilizerAdd({ navigation }) {
   const [state, setState] = useState('Tamil Nadu');
   const [contact, setContact] = useState('');
   const [loading, setLoading] = useState(false);
+  const {t,i18n} = useTranslation();
 
   const submitFertilizer = async () => {
     if (!fertilizerName || !description || !contact) {
@@ -221,25 +227,25 @@ function FertilizerAdd({ navigation }) {
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar style="light" />
-      <Text style={styles.boldText}>Add Fertilizer</Text>
-      <Text>Fertilizer Name</Text>
+      <Text style={styles.boldText}>{t('addFertilizer')}</Text>
+      <Text>{t('fertilizerName')}</Text>
       <TextInput style={styles.input} value={fertilizerName} onChangeText={setFertilizerName} />
-      <Text>Description</Text>
+      <Text>{t('description')}</Text>
       <TextInput style={styles.input} value={description} onChangeText={setDescription} />
-      <Text>State</Text>
+      <Text>{t('state')}</Text>
       <Picker selectedValue={state} onValueChange={(itemValue) => setState(itemValue)} style={styles.input}>
         <Picker.Item label="Tamil Nadu" value="Tamil Nadu" />
         <Picker.Item label="Kerala" value="Kerala" />
         <Picker.Item label="Karnataka" value="Karnataka" />
         <Picker.Item label="Maharashtra" value="Maharashtra" />
       </Picker>
-      <Text>Contact</Text>
+      <Text>{t('contact')}</Text>
       <TextInput style={styles.input} value={contact} onChangeText={setContact} keyboardType="numeric" />
       {loading ? (
         <ActivityIndicator size="large" color="#32cd32" />
       ) : (
         <Pressable style={styles.button} onPress={submitFertilizer}>
-          <Text style={styles.buttonText}>Submit</Text>
+          <Text style={styles.buttonText}>{t('submit')}</Text>
         </Pressable>
       )}
     </SafeAreaView>
@@ -291,6 +297,7 @@ const styles = StyleSheet.create({
   },
   content: {
     paddingHorizontal: 10,
+    maxHeight:'65%',
   },
   boldText: {
     fontWeight: 'bold',
