@@ -37,6 +37,6 @@ export const tabs = [
     title: "HealthCare",
     screen: "HealthCare",
     icon: "robot-outline",
-    Component: HealthCare,
+    Component: AgroBot,
   },
 ];
