@@ -1,11 +1,14 @@
-import { StyleSheet, Text, View } from 'react-native';
-import React from 'react';
-import useWeatherForecast from '../../hooks/useWeatherForecast';
+import { StyleSheet, Text, View } from 'react-native'
+import React from 'react'
 
 const WeatherComponent = () => {
-
-    return <></>
-};
+    return (
+        <View style={styles.overlay}>
+            <View >
+            </View>
+        </View>
+    )
+}
 
 export default WeatherComponent;
 

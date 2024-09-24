@@ -8,7 +8,7 @@ function TomatoScreen() {
     return (
         <Tomato.Navigator>
             <Tomato.Screen name="Tomato" component={TomatoView} />
-            <Tomato.Screen name="tomatoAdd" component={TomatoAdd} />
+            <Tomato.Screen name="TomatoAdd" component={TomatoAdd} />
         </Tomato.Navigator>
     );
 }
@@ -36,8 +36,8 @@ const DukaanStack = () => {
                     tabBarInactiveTintColor: '#888',
                 }}
             >
-                <Tab.Screen name="Fertilizer" component={FertilizerScreen} />
-                <Tab.Screen name="Tomato" component={TomatoScreen} />
+                <Tab.Screen name="FertilizerScreen" component={FertilizerScreen} />
+                <Tab.Screen name="TomatoScreen" component={TomatoScreen} />
             </Tab.Navigator>
     );
 }
