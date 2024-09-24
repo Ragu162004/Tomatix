@@ -1,233 +1,207 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Alert } from 'react-native';
-//import style1 from './App.css'
-import { Button, ScrollView, TextInput } from 'react-native-web';
-import {useState,Modal,Pressable,useRef,useEffect} from 'react'
-//import {useScrollToTop} from '@react-navigation/native';
-import { ChatAnswer} from '../Components/AgroBotComponent/ChatAnswer';
+import React, { useState, useRef, useEffect } from 'react';
+import { StyleSheet, Text, View, Button, ScrollView, TextInput, StatusBar, ActivityIndicator, Alert } from 'react-native';
+import { ChatAnswer } from '../Components/AgroBotComponent/ChatAnswer';
 
 export default function AgroBot() {
-  const [ans,setAns] = useState([{id:1,question:"Hello",answer:"Hello I am your assistant"}]);
-  const [question,setQuestion] = useState('');
-  var id=2;
-  var i;
-  const chatref = useRef(null);
-  const input_text = useRef(null);
-  const [chatans,setchatans] = useState(1);
-  const [alrt,setalrt] = useState(1);
-  const [modal_view,setmodal_view] = useState(true);
+  const [ans, setAns] = useState([{ id: 1, question: "Hello", answer: "Hello I am your assistant" }]);
+  const [question, setQuestion] = useState('');
+  const [chatans, setChatans] = useState(true);
+  const [alrt, setAlrt] = useState(true);
+  const [loading, setLoading] = useState(false);
 
-  useEffect(()=>{
-    if(chatref.current)
-    {
-      chatref.current.scrollToEnd({animated:true});
+  const chatRef = useRef(null);
+  const inputText = useRef(null);
+  let id = 2;
+
+  useEffect(() => {
+    if (chatRef.current) {
+      chatRef.current.scrollToEnd({ animated: true });
     }
-  },[ans]);
-  function alert(){
-    return(<View style={{alignItems:'center',justifyContent:'center',top:'30%',position:'absolute',borderRadius:'10px',backgroundColor:'#EEF',padding:'3%',shadowColor:'#998',shadowOffset:{height:'0px',width:'0px'},shadowRadius:'1000px',fontSize:'110%',fontFamily:'sans-serif',borderColor:'#888',borderWidth:'2px'}}>
-      <p style={{margin:'5px',padding:'5px',borderRadius:'5px'}}><b>You can chat in more languages</b></p>
-      <p style={{margin:'5px'}}>Try     <br/>வணக்கம்...<br/>नमस्ते...</p>
-      <Button title="Okay" onPress={()=>{setalrt(0)}}></Button>
-    </View>);
-  }
+  }, [ans]);
 
-  async function chatAnswer()
-  {
-    //console.log(chatans);
-    if(question=="" || chatans==0)
-    {
+  const handleClearChat = () => {
+    setAns([]);
+  };
+
+  const alert = () => (
+    <View style={styles.alertContainer}>
+      <Text style={styles.alertTitle}>You can chat in more languages</Text>
+      <Text style={styles.alertText}>Try{'\n'}வணக்கம்...{'\n'}नमस्ते...</Text>
+      <Button title="Okay" onPress={() => setAlrt(false)} />
+    </View>
+  );
+
+  const chatAnswer = async () => {
+    if (question === "" || !chatans) {
       return;
     }
-    setchatans(0);
-    input_text.current.clear();
-    setAns([...ans,{id:id,question:question,answer:"..."}])
-    try{
-    var answer = await fetch("http://localhost:3000/chat",{method:'POST',body:JSON.stringify({question:question}),headers:{'Content-Type':'application/json'}});
-    console.log(answer.formData);//answer.json().then((data)=>{console.log(data.answer)}));
-    setAns(ans.filter((s,i)=>i!=id));
-    answer.json().then((data)=>{
-      
-        setAns([...ans,{id:id,question:question,answer:data.answer}])
-        //console.log(chatans)
-        setchatans(1);
-      //   ans.map((m,i)=>
-      // {
-      //   if(i!=id)
-      //   {
-      //     return m;
-      //   }
-      //   else{
-      //     return {id:id,question:question,answer:data.answer};
-      //   }
-      // })
-      //   
-    });
-  }
-  catch
-  {
-    setAns(ans.filter((s,i)=>i!=id));
-    setAns([...ans,{id:id,question:question,answer:"Check your connection"}])
-        //console.log(chatans)
-        setchatans(1);
-  }
-    //console.log(ans);
-    setQuestion('');
-    id++;
-    //chatans = 1;
-  }
-  function chat()
-  {
-    var chats = [];
-    for(i=0; i<ans.length; i++)
-    {
-      chats.push(<View>
-    <Text style={styles.question}>{ans[i].question}</Text>
-    <ChatAnswer style={styles.answer} answer_text={ans[i].answer}/></View>);
+    setChatans(false);
+    inputText.current.clear();
+    setAns([...ans, { id: id, question: question, answer: "..." }]);
+    setLoading(true);
+    try {
+      const response = await fetch("http://localhost:3000/chat", {
+        method: 'POST',
+        body: JSON.stringify({ question: question }),
+        headers: { 'Content-Type': 'application/json' }
+      });
+      const data = await response.json();
+      setAns((prevAns) => prevAns.filter((msg) => msg.id !== id));
+      setAns((prevAns) => [...prevAns, { id: id, question: question, answer: data.answer }]);
+    } catch(error) {
+      setAns((prevAns) => prevAns.filter((msg) => msg.id !== id));
+      setAns((prevAns) => [...prevAns, { id: id, question: question, answer: "Check your connection" }]);
+      console.log(error);
+    } finally {
+      setLoading(false);
+      setQuestion('');
+      id++;
+      setChatans(true);
     }
-    return chats;
-  }
+  };
+
+  const renderChat = () => (
+    ans.map((message) => (
+      <View key={message.id} style={styles.messageContainer}>
+        <Text style={styles.question}>{message.question}</Text>
+        <ChatAnswer answer_text={message.answer} />
+      </View>
+    ))
+  );
+
   return (
     <View style={styles.container}>
-      {/*<Modal animationType='slide' transparent={true} visible={modal_view} onRequestClose={()=>{setmodal_view(false)}}>
-        <View style={styles.container}><Text>Hello</Text>
-        <Pressable onPress={()=>{setmodal_view(false)}}>Okay</Pressable></View>
-      </Modal>*/}
-      <View style={styles.title}><b>TOMATIX</b></View>
-      <View style={styles.screen}>
-        
-              <View style={styles.text}>
-                <ScrollView style={styles.text_area} ref={chatref}>
-                  {/*ans.map(chat=>{<Text>{/*console.log(chat.id);}<Text style={styles.question}>Hello text_area</Text>
-                  <ChatAnswer style={styles.answer} answer_text="ChatAnswer"/></Text>})                  */}
-                  {chat()}
-                  {/*<Text style={styles.question}>{"hello"}</Text>
-                  <ChatAnswer style={styles.answer} answer_text={"Hello"}/>*/  }
-                  {/*<Text style={styles.question}>Hello text_area</Text>
-                  <ChatAnswer style={styles.answer} answer_text="ChatAnswer"/>*/}
-                  </ScrollView>
-                  <View style={styles.input}>
-                    <View style={{display:'flex',flexDirection:'row',alignSelf:'flex-end', top:'50%'}}>
-                    <Button style={{float:'right',width:'25px',display:'flex'}} onPress={chatAnswer} title="Send"/>
-                    </View>
-                    <View style={{display:'flex',position:'relative',width:'80%',top:'-10px'}}>
-              <TextInput
-              ref={input_text}
-              style={{height:'10vh',fontSize:'120%',padding:'10px',paddingRight:'50px',display:'flex'}}
-              placeholder="Chat here..."
-              keyboardType="text"
-              id="question"
-              multiline
-              placeholderTextColor="#444"
-              onChangeText={setQuestion}
-              editable={true ? alrt==0 : false}
-            />
-            </View>
-            </View>
-            </View>
+      <View style={styles.title}>
+        <Text style={styles.titleText}>TOMATIX</Text>
       </View>
-      {alrt==1 ?alert() : <></>}
+      <View style={styles.screen}>
+        <ScrollView style={styles.chatbox} ref={chatRef}>
+          {renderChat()}
+          {loading && <ActivityIndicator size="small" color="#0000ff" />}
+        </ScrollView>
+        <View style={styles.chatInputContainer}>
+          <TextInput
+            ref={inputText}
+            style={styles.textInput}
+            placeholder="Chat here..."
+            onChangeText={setQuestion}
+            editable={true}
+            multiline
+          />
+          <Button title="Send" onPress={chatAnswer} />
+          <Button title="Clear Chat" onPress={handleClearChat} color="#FF0000" />
+        </View>
+      </View>
+      {alrt && alert()}
       <StatusBar style="auto" />
     </View>
   );
 }
 
-
-
-
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      //justifyContent: 'center',
-    },
-    screen: {
-      position:'relative',
-      display:'flex',
-      backgroundColor:'rgba(0,255,255,0)',
-      height:'75vh',
-      borderRadius:'20px',
-      width:'95%',
-      //border:'1px solid grey',
-      shadowColor:'rgba(100,100,100,0.5)',
-      shadowOffset:{width:0,height:10},
-      shadowOpacity:'1',
-      elevation:'10',
-      shadowRadius:5,
-      flexDirection:'column'
-    },
-    input: {
-      height: '10vh',
-      margin: '2vh',
-      borderRadius:'10px',
-      
-      fontSize:'120%',
-      fontStyle:'bold',
-      backgroundColor:'#EEE',
-      fontFamily:'Arial',
-      shadowColor:'#BBB',
-      shadowOffset:{height:10,width:0},
-      shadowRadius:10,
-      flexDirection:'column',
-      justifyContent:'center',
-      alignItems:''
-    },
-    text: {
-      display:'inline-flex',
-      alignContent:'center',
-      justifyContent:'flex-end',
-      position:'relative',
-      flex:1,
-      width:'100%',
-      flexDirection:'column'
-    },
-    text_area:{
-      position:'relative',
-      //border:'1px solid black',
-      height:'10%',
-      flex:2,
-      borderRadius:'20px',
-      padding:'10px',
-      overflowY:'auto'
-    },
-    question:{   
-      display:'flex', 
-      float:'right',
-      //textAlign:'right',
-      borderRadius:'10px',
-      backgroundColor:'#BFB',
-      padding:'10px',
-      alignSelf:'flex-end',
-      margin:'10px',
-      fontSize:'110%'
-    },
-    answer:{
-      display:'flex',
-      //textAlign:'left',
-      borderRadius:'10px',
-      //backgroundColor:'#FFF',
-      padding:'10px',
-      float:'left',
-      alignSelf:'flex-start',
-      shadowColor:'gray',
-      shadowOffset:{height:5,width:0},
-      shadowRadius:'5px',
-      justifyContent:'center',
-      fontSize:'110%'
-      //backgroundImage:URL('./images/tomatix-chatbot-removebg-preview.png')
-    },
-    title:{
-      backgroundColor:'#EEF',
-      width:'95%',
-      margin:'0px',
-      justifyContent:'center',
-      alignItems:'center',
-      padding:'2%',
-      fontFamily:'Arial',
-      color:'#55F',
-      borderTopRightRadius:'10px',
-      borderTopLeftRadius:'10px',
-      marginTop:'10px'
-    }
-  });
-
+  container: {
+    flex: 1,
+    backgroundColor: '#f8f8f8',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    paddingBottom:150,
+  },
+  screen: {
+    flex: 1,
+    backgroundColor: '#ffffff',
+    borderRadius: 10,
+    width: '95%',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 5 },
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    elevation: 5,
+    padding: 10,
+    marginTop: 10,
+  },
+  chatbox: {
+    flex: 1,
+    paddingHorizontal: 15,
+    paddingBottom: 10,
+  },
+  messageContainer: {
+    marginVertical: 5,
+  },
+  question: {
+    backgroundColor: '#d4f1d4',
+    padding: 10,
+    borderRadius: 10,
+    fontSize: 16,
+    alignSelf: 'flex-end',
+    maxWidth: '80%',
+    marginBottom: 2,
+    elevation: 1,
+    shadowColor: '#888',
+    shadowOffset: { width: 1, height: 1 },
+    shadowOpacity: 0.2,
+    shadowRadius: 1,
+  },
+  chatInputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderTopWidth: 1,
+    borderTopColor: '#ddd',
+    paddingVertical: 10,
+  },
+  textInput: {
+    flex: 1,
+    backgroundColor: '#f1f1f1',
+    borderRadius: 10,
+    paddingHorizontal: 15,
+    fontSize: 16,
+    marginRight: 10,
+  },
+  title: {
+    backgroundColor: '#eef',
+    width: '95%',
+    padding: 15,
+    alignItems: 'center',
+    borderTopRightRadius: 10,
+    borderTopLeftRadius: 10,
+    marginTop: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 5 },
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    elevation: 5,
+  },
+  titleText: {
+    fontFamily: 'Arial',
+    color: '#55f',
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+  alertContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    top: '30%',
+    borderRadius: 10,
+    backgroundColor: '#eef',
+    padding: 20,
+    shadowColor: '#998',
+    shadowOffset: { height: 0, width: 0 },
+    shadowRadius: 10,
+    borderColor: '#888',
+    borderWidth: 2,
+    width: '80%',
+  },
+  alertTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  alertText: {
+    marginBottom: 10,
+    fontSize: 16,
+    textAlign: 'center',
+  },
+  activityIndicator: {
+    marginTop: 10,
+  },
+});

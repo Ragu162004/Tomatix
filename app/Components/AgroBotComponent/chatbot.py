@@ -1,9 +1,11 @@
-import transformers
+#import transformers
 import flask
 from flask_cors import CORS
 
 import google.generativeai as genai
 from googletrans import Translator
+
+
 
 genai.configure(api_key="AIzaSyC1_8UFk581yz4MKrSdnqwtOK1Wb7n94MQ")
 
@@ -11,7 +13,7 @@ model = genai.GenerativeModel('gemini-pro')
 
 translator = Translator()
 
-nlp = transformers.pipeline("question-answering")
+#nlp = transformers.pipeline("question-answering")
 
 context = '''Shop our tomatoes in shopping section. I am tomatix. I can assist you.
 Sale tomatoes from the farmers directly and fertilizers for land with bio-fertilizers and chemical fertilizers.
@@ -62,7 +64,7 @@ Yield: The yield per hectare varies greatly according to variety and season. On 
 '''
 #ques = input()
 app = flask.Flask(__name__)
-cors = CORS(app)
+cors = CORS(app,origins=["http://192.168.137.255:3000"])
 
 @app.route("/chat",methods=['POST'])
 def chat():
@@ -78,11 +80,11 @@ def chat():
           #print(flask.request.get_json().get("question",""))
       except:
           pass
-      nlp_answer = nlp(question=translation1.text,context=context)
+      '''nlp_answer = nlp(question=translation1.text,context=context)
       nlp_ans = nlp_answer['answer']
-      nlp_score = nlp_answer['score']
+      nlp_score = nlp_answer['score']'''
 
-      if nlp_score>0.1:
+      '''if nlp_score>0.1:
         answer = ""
 
         for i in context.split('.'):
@@ -100,11 +102,11 @@ def chat():
           #translation2 = translator.translate(con.text, src='en', dest=q1.lang)
           print(answer)
           return {"answer":translation2.text+"\n"+con.text}
-      else:
-        con = model.generate_content(ques)
-        return {"answer":con.text+"\n(generated from api)"}#"\nAccuracy is low in our model so used in-built models\n"+nlp_ans+" Please try again with another command "}
-    except:
-       return {"answer":"The server is down"}
+      else:'''
+      con = model.generate_content(ques)
+      return {"answer":con.text+"\n(generated from api)"}#"\nAccuracy is low in our model so used in-built models\n"+nlp_ans+" Please try again with another command "}
+    except Exception as e:
+       return {"answer":e}
 
 if __name__=="__main__":
     app.run(port=3000)

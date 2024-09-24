@@ -1,32 +1,42 @@
-import { StatusBar } from 'expo-status-bar';
+import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 
-
-function ChatAnswer({answer_text})
-{
-    return(
-      <view >
-       <Image source={require('./tomatix-chatbot-removebg-preview.png')} style={{width:'30px',height:'40px',resizeMode:'contain',display:'block'}}/>
-        <Text style={styles.answer}>{answer_text}</Text>
-        </view>
-    )
+const ChatAnswer = ({ answer_text }) => {
+    
+    
+    return (
+        <View style={styles.container}>
+            <Image
+                source={require('./tomatix-chatbot-removebg-preview.png')}
+                style={styles.image}
+            />
+            <Text style={styles.answer}>{answer_text}</Text>
+        </View>
+    );
 }
 
 const styles = StyleSheet.create({
-    answer:{
-        display:'flex',
-        //textAlign:'left',
-        borderRadius:'10px',
-        //backgroundColor:'#FFF',
-        padding:'10px',
-        float:'left',
-        alignSelf:'flex-start',
-        shadowColor:'gray',
-        shadowOffset:{height:5,width:0},
-        shadowRadius:'5px',
-        justifyContent:'center',
-        fontSize:'110%'
-        //backgroundImage:URL('./images/tomatix-chatbot-removebg-preview.png')
-      }
+    container: {
+        flexDirection: 'row', 
+        alignItems: 'flex-start', 
+    },
+    image: {
+        width: 30,
+        height: 40,
+        resizeMode: 'contain',
+        marginRight: 10,
+    },
+    answer: {
+        borderRadius: 10,
+        backgroundColor: '#FFF',
+        padding: 10,
+        shadowColor: 'gray',
+        shadowOffset: { height: 5, width: 0 },
+        shadowOpacity: 0.3, 
+        shadowRadius: 5,
+        fontSize: 16, 
+        maxWidth: '80%', 
+    },
 });
-export {ChatAnswer};
+
+export { ChatAnswer };

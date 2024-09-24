@@ -28,15 +28,15 @@ export const tabs = [
   {
     id: 4,
     title: "Price",
-    screen: "WeatherForecast",
+    screen: "Market",
     icon: "currency-inr",
-    Component: WeatherForecast,
+    Component: MarketIntelligence,
   },
   {
     id: 5,
     title: "Agro Bot",
-    screen: "AgroBot",
+    screen: "Agro Bot",
     icon: "robot-outline",
-    Component: WeatherForecast,
+    Component: AgroBot,
   },
 ];
