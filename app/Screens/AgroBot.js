@@ -10,20 +10,23 @@ const Chatbot = () => {
     if (input.trim() === '') return;
 
     setLoading(true);
+    const updatedChatHistory = [...chatHistory, { from: 'user', message: input }];
+    setChatHistory(updatedChatHistory);
+
     try {
       const response = await fetch('https://tomatix-backend-1.onrender.com/generate-content', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ input }), 
+        body: JSON.stringify({ chatHistory: updatedChatHistory }),
       });
 
       const data = await response.json();
       const botMessage = data.response;
 
-      setChatHistory([...chatHistory, { from: 'user', message: input }, { from: 'bot', message: botMessage }]);
-      setInput(''); 
+      setChatHistory([...updatedChatHistory, { from: 'bot', message: botMessage }]);
+      setInput('');
     } catch (error) {
       console.error('Error fetching chatbot response:', error);
     } finally {
@@ -57,7 +60,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    marginBottom:100,
+    marginBottom: 100,
     backgroundColor: '#fff',
   },
   chatContainer: {
