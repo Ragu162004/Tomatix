@@ -8,7 +8,7 @@ const MainHeader = ({ title }) => {
         <View style={styles.circle}></View>
         <View style={styles.message}>
           <Text style={styles.greeting}>Welcome, </Text>
-          <Text style={styles.namecard}>Jessica Jones</Text>
+          <Text style={styles.namecard}>User</Text>
         </View>
       </View>
     </View>
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     alignItems: "flex-start",
     paddingVertical:70,
-    height: 250,
+    height: 200,
     backgroundColor: "#0fa284",
     borderBottomRightRadius: 27,
     borderBottomLeftRadius: 27,

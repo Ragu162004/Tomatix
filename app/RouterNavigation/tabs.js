@@ -1,15 +1,15 @@
 // tabs.js
-import { CommunityChat, MarketIntelligence, WeatherForecast, AgroBot } from "../Screens";
+import { CommunityChat, MarketIntelligence, WeatherForecast, AgroBot, HealthCare } from "../Screens";
 import { HomeStack } from "./AppStacks/HomeStack";
 import {DukaanStack} from './AppStacks/DukaanStack';
 
 export const tabs = [
   {
     id: 1,
-    title: "Messages",
+    title: "Weather",
     screen: "Chat",
     icon: "message-text",
-    Component: MarketIntelligence,
+    Component: WeatherForecast,
   },
   {
     id: 2,
@@ -30,13 +30,13 @@ export const tabs = [
     title: "Price",
     screen: "WeatherForecast",
     icon: "currency-inr",
-    Component: WeatherForecast,
+    Component: MarketIntelligence,
   },
   {
     id: 5,
-    title: "Agro Bot",
-    screen: "AgroBot",
+    title: "HealthCare",
+    screen: "HealthCare",
     icon: "robot-outline",
-    Component: WeatherForecast,
+    Component: HealthCare,
   },
 ];

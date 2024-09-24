@@ -96,7 +96,7 @@ function MarketIntelligence() {
     setError('');
     try {
       const response = await fetch(
-        'http://localhost:5501/getmarketintelligence',
+        'http://10.1.34.87:5501/getmarketintelligence',
         {
           method: 'POST',
           headers: {

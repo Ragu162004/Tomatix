@@ -94,11 +94,7 @@ const styles = StyleSheet.create({
         color: '#333',
         marginBottom: 10,
         textAlign: 'center',
-        fontWeight: 500
     },
-    WeatherCondition: {
-        fontWeight: 800
-    }
 });
 
 export default WeatherForecast;

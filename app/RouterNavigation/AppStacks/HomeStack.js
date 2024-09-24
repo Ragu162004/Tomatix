@@ -1,5 +1,6 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import { Home } from "../../Screens/Home";
+import { DukaanStack } from "./DukaanStack";
 
 const Stack = createStackNavigator();
 
