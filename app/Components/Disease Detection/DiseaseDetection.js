@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Button, Image, Alert } from 'react-native';
-import * as ImagePicker from 'expo-image-picker'; // Image picker for Expo
+import * as ImagePicker from 'expo-image-picker'; 
 import { Platform } from 'react-native';
 
 const DiseaseDetection = () => {
@@ -18,19 +18,19 @@ const DiseaseDetection = () => {
   };
 
   const chooseImage = async () => {
-    await requestPermission(); // Ensure permission is requested first
+    await requestPermission(); 
     try {
       let result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.Images,
         allowsEditing: true,
         quality: 1,
-        base64: true, // Include Base64 data in the result
+        base64: true,
       });
 
       if (!result.canceled) {
-        setImageUrl(result.assets[0].uri); // Display the selected image
-        setBase64Image(result.assets[0].base64); // Set Base64 image
-        uploadImage(result.assets[0].base64); // Upload Base64 image to the server
+        setImageUrl(result.assets[0].uri);
+        setBase64Image(result.assets[0].base64); 
+        uploadImage(result.assets[0].base64); 
       }
     } catch (error) {
       console.error('Error selecting image:', error);
@@ -39,8 +39,8 @@ const DiseaseDetection = () => {
   };
 
   const uploadImage = async (base64Image) => {
-    const apiUrl = 'http://192.168.206.201:5000/predict'; // Backend server URL
-    const base64Data = `data:image/jpeg;base64,${base64Image}`; // Format Base64 with appropriate data type
+    const apiUrl = 'http://192.168.206.201:5000/predict'; 
+    const base64Data = `data:image/jpeg;base64,${base64Image}`;
 
     try {
       const response = await fetch(apiUrl, {
@@ -53,7 +53,7 @@ const DiseaseDetection = () => {
 
       if (response.ok) {
         const result = await response.json();
-        setPrediction(result.prediction); // Display the prediction
+        setPrediction(result.prediction);
       } else {
         console.error('Server error:', response.status);
         Alert.alert('Server Error', `Failed to get prediction: ${response.status}`);
@@ -113,4 +113,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DiseaseDetection;
+export  { DiseaseDetection };
