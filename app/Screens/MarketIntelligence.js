@@ -1,6 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
 import { Button, StyleSheet, Text, View, ScrollView, ActivityIndicator } from 'react-native';
-import axios from 'axios';
 import { useState } from 'react';
 import { Picker } from '@react-native-picker/picker';
 
@@ -96,7 +95,7 @@ function MarketIntelligence() {
     setError('');
     try {
       const response = await fetch(
-        'http://10.1.34.87:5501/getmarketintelligence',
+        'http://192.168.206.114:5501/getmarketintelligence',
         {
           method: 'POST',
           headers: {
@@ -121,20 +120,18 @@ function MarketIntelligence() {
   return (
     <ScrollView contentContainerStyle={styles.outerContainer}>
       <StatusBar backgroundColor="#007bff" barStyle="light-content" />
-      <Text style={styles.text1}>Tomatix</Text>
-      <Text style={styles.text}>Select The State</Text>
-
+      <View style={styles.container}>
+        <Text style={styles.text1}>Tomatix</Text>
+        <Text style={styles.text}>Select The State</Text>
+      </View>
       <Picker style={styles.picker} selectedValue={statename} onValueChange={handlePickerChange}>
         {states.map((statex, i) => (
           <Picker.Item key={i} label={statex} value={statex} />
         ))}
       </Picker>
       <Button title="Submit" onPress={handleSubmit} />
-
-      {loading && <ActivityIndicator size="large" color="#007bff" />}
-
+      {loading && <ActivityIndicator style={styles.loader} size={60} color="#007bff" />}
       {error && <Text style={styles.error}>{error}</Text>}
-
       {!loading && tableres.length > 0 && (
         <ScrollView style={styles.innerContainer}>
           {tableres.map((tableData, tableIndex) => (
@@ -156,10 +153,14 @@ export default MarketIntelligence;
 
 const styles = StyleSheet.create({
   outerContainer: {
-    flexGrow: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexGrow: 1,
+    padding: 10,
+  },
+  container: {
+    display: 'flex',
+    alignItems: "center",
+    justifyContent: 'center'
   },
   innerContainer: {
     flex: 1,
@@ -228,4 +229,8 @@ const styles = StyleSheet.create({
     color: 'red',
     marginTop: 10,
   },
+  loader : {
+    padding:100,
+    
+  }
 });
