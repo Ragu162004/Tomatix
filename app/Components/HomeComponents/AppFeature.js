@@ -11,7 +11,7 @@ const ContainerComponent = ({ navigation }) => {
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
       <View style={styles.container}>
-        <Text style={styles.header}>Welcome to Tomatix</Text>
+        <Text style={styles.header}>{t('appFeatureHeader')}</Text>
         <Text style={styles.text}>
           {t('appFeatureText')}
         </Text>
