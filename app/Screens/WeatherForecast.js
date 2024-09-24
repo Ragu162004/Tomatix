@@ -140,13 +140,13 @@ const styles = StyleSheet.create({
         padding: 15,
         backgroundColor: '#ffffff',
         borderRadius: 10,
-        marginRight: 10,
+        margin: 10,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.1,
         shadowRadius: 5,
         elevation: 3,
-        minWidth: 150, // Minimum width for cards
+        minWidth: 150,
     },
     dateText: {
         fontSize: 16,
