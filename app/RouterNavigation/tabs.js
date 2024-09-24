@@ -2,6 +2,7 @@
 import { CommunityChat, MarketIntelligence, WeatherForecast, AgroBot, HealthCare } from "../Screens";
 import { HomeStack } from "./AppStacks/HomeStack";
 import {DukaanStack} from './AppStacks/DukaanStack';
+import DiseaseDetection from './../Components/Disease Detection/DiseaseDetection';
 
 export const tabs = [
   {

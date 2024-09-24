@@ -1,21 +1,23 @@
-import React from 'react';
-import { View, Text, StyleSheet, Dimensions, ScrollView, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import '../Language/language';
+import { Picker } from '@react-native-picker/picker';
+import '../Language/language';  
 
-const ContainerComponent = ({ navigation }) => {
-  const {t,i18n} = useTranslation();
-  const changeLanguage = (lng) =>{
+const ContainerComponent = () => {
+  const { t, i18n } = useTranslation();
+  const [selectedLanguage, setSelectedLanguage] = useState(i18n.language);
+
+  const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
-  }
+    setSelectedLanguage(lng);
+  };
+
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
-      <View style={styles.container}>
+      <View style={styles.contentContainer}>
         <Text style={styles.header}>{t('appFeatureHeader')}</Text>
-        <Text style={styles.text}>
-          {t('appFeatureText')}
-        </Text>
-        <Text>{t('welcome')}</Text>
+        <Text style={styles.text}>{t('appFeatureText')}</Text>
       </View>
     </ScrollView>
   );
@@ -24,36 +26,47 @@ const ContainerComponent = ({ navigation }) => {
 const styles = StyleSheet.create({
   scrollContainer: {
     flexGrow: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#f4f4f4',
     padding: 20,
-    alignItems: 'center',
   },
-  container: {
+  pickerContainer: {
     width: '100%',
-    flexDirection: 'column',
     alignItems: 'center',
-    marginBottom: 150,
+    marginBottom: 40,
   },
-  text: {
+  label: {
     fontSize: 20,
-    color: '#333',
+    fontWeight: '500',
+    color: '#555',
+    marginBottom: 10,
     textAlign: 'center',
-    paddingHorizontal: 20,
+  },
+  picker: {
+    height: 50,
+    width: '80%',
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    elevation: 2, 
+  },
+  contentContainer: {
+    width: '100%',
+    alignItems: 'center',
   },
   header: {
-    fontSize: 26,
-    fontWeight: '600',
-    paddingVertical: 10,
-  },
-  button: {
-    marginTop: 20,
-    padding: 15,
-    backgroundColor: '#007bff',
-    borderRadius: 5,
-  },
-  buttonText: {
-    fontSize: 18,
-    color: '#fff',
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#333',
     textAlign: 'center',
+    marginBottom: 20,
+  },
+  text: {
+    fontSize: 16,
+    color: '#666',
+    textAlign: 'center',
+    lineHeight: 24,
+    paddingHorizontal: 20,
   },
 });
 
