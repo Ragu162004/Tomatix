@@ -95,7 +95,7 @@ function MarketIntelligence() {
     setError('');
     try {
       const response = await fetch(
-        'https://tomatix-backend-1.onrender.com/getmarketintelligence',
+        'http://192.168.26.27:5501/getmarketintelligence',
         {
           method: 'POST',
           headers: {

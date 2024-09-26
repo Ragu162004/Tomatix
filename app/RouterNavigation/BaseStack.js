@@ -1,15 +1,41 @@
-
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { StatusBar, Platform } from "react-native";
-import TabNavigation from "./AppStacks/TabNavigation"; 
-import { tabs } from "./tabs"; 
+import { StatusBar } from "react-native";
+import TabNavigation from "./AppStacks/TabNavigation";
+import AuthStack from "./AuthStack/AuthStack";
+import axios from "axios";
 
 const BaseStack = () => {
+
+  const [isAuth, setIsAuth] = useState(false); 
+
+  useEffect(()=>{
+    const getAuth = async function()
+    {
+     try{
+      axios.defaults.withCredentials = true;
+      const res = await axios.get("http://192.168.26.27:5501/");
+      if(res.data.success)
+      {
+        setIsAuth(true);
+        console.log("Successsssssss")
+      }
+     }
+     catch(error)
+     {
+      console.log(error)
+      setIsAuth(false);
+     }   
+  }},[])
+
   return (
     <NavigationContainer>
-      <TabNavigation tabs={tabs} />
-      <StatusBar hidden={true}/> 
+      {isAuth ? (
+        <TabNavigation />
+      ) : (
+        <AuthStack />
+      )}
+      <StatusBar hidden={true} />
     </NavigationContainer>
   );
 };

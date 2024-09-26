@@ -39,7 +39,7 @@ const DiseaseDetection = () => {
   };
 
   const uploadImage = async (base64Image) => {
-    const apiUrl = 'http://192.168.206.201:5000/predict'; 
+    const apiUrl = 'http://192.168.26.27:5000/predict'; 
     const base64Data = `data:image/jpeg;base64,${base64Image}`;
 
     try {

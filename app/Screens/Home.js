@@ -3,12 +3,12 @@ import React from 'react'
 import { MainHeader } from '../Components';
 import WeatherComponent from '../Components/HomeComponents/WeatherComponent';
 import AppFeature from '../Components/HomeComponents/AppFeature';
-const Home = () => {
+const Home = ({navigation}) => {
   return (
     <View style={styles.mainPage}>
       <MainHeader title={'Tomatix'}/>
       {/* <WeatherComponent/> */}
-      <AppFeature/>
+      <AppFeature navigation={navigation}/>
     </View>
   );
 }

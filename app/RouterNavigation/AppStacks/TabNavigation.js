@@ -1,11 +1,14 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StyleSheet } from "react-native";
-import { TabButton } from "../../Components"; 
+import { TabButton } from "../../Components";
+import { CommunityChat, MarketIntelligence, WeatherForecast, AgroBot } from "../../Screens";
+import { HomeStack } from "../AppStacks/HomeStack";
+import { DukaanStack } from '../AppStacks/DukaanStack';
 
 const Tab = createBottomTabNavigator();
 
-const TabNavigation = ({ tabs }) => {
+const TabNavigation = () => {
   return (
     <Tab.Navigator
       initialRouteName={"Home Tab"}
@@ -14,17 +17,46 @@ const TabNavigation = ({ tabs }) => {
         tabBarStyle: styles.tabBar,
       }}
     >
-      {tabs.map((item) => (
-        <Tab.Screen
-          key={item.id}
-          name={item.screen}
-          component={item.Component}
-          options={{
-            tabBarShowLabel: false,
-            tabBarButton: (props) => <TabButton item={item} {...props} />,
-          }}
-        />
-      ))}
+      <Tab.Screen
+        name="Chat"
+        component={WeatherForecast}
+        options={{
+          tabBarShowLabel: false,
+          tabBarButton: (props) => <TabButton item={{ title: "Weather", icon: "message-text" }} {...props} />,
+        }}
+      />
+      <Tab.Screen
+        name="Dukaan"
+        component={DukaanStack}
+        options={{
+          tabBarShowLabel: false,
+          tabBarButton: (props) => <TabButton item={{ title: "Dukaan", icon: "storefront-outline" }} {...props} />,
+        }}
+      />
+      <Tab.Screen
+        name="Home Tab"
+        component={HomeStack}
+        options={{
+          tabBarShowLabel: false,
+          tabBarButton: (props) => <TabButton item={{ title: "Home Tab", icon: "home" }} {...props} />,
+        }}
+      />
+      <Tab.Screen
+        name="Market"
+        component={MarketIntelligence}
+        options={{
+          tabBarShowLabel: false,
+          tabBarButton: (props) => <TabButton item={{ title: "Price", icon: "currency-inr" }} {...props} />,
+        }}
+      />
+      <Tab.Screen
+        name="AgroBot"
+        component={AgroBot}
+        options={{
+          tabBarShowLabel: false,
+          tabBarButton: (props) => <TabButton item={{ title: "AgroBot", icon: "robot-outline" }} {...props} />,
+        }}
+      />
     </Tab.Navigator>
   );
 };
@@ -33,7 +65,7 @@ const styles = StyleSheet.create({
   tabBar: {
     height: 90,
     bottom: 25,
-    position:"absolute",
+    position: "absolute",
     marginHorizontal: 16,
     borderRadius: 16,
     justifyContent: "center",
