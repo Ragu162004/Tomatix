@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { Picker } from '@react-native-picker/picker';
 import '../Language/language';  
 
-const ContainerComponent = () => {
+const ContainerComponent = ({ navigation }) => {
   const { t, i18n } = useTranslation();
   const [selectedLanguage, setSelectedLanguage] = useState(i18n.language);
 
@@ -18,6 +18,14 @@ const ContainerComponent = () => {
       <View style={styles.contentContainer}>
         <Text style={styles.header}>{t('appFeatureHeader')}</Text>
         <Text style={styles.text}>{t('appFeatureText')}</Text>
+        
+        {/* New Button for Scanning Plant Disease */}
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate('DiseaseDetection')}  // Replace with the actual navigation route name
+        >
+          <Text style={styles.buttonText}>{t('scanPlantDisease')}</Text>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );
@@ -48,7 +56,7 @@ const styles = StyleSheet.create({
     width: '80%',
     backgroundColor: '#fff',
     borderRadius: 10,
-    elevation: 2, 
+    elevation: 2,
   },
   contentContainer: {
     width: '100%',
@@ -67,6 +75,21 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     lineHeight: 24,
     paddingHorizontal: 20,
+    marginBottom: 30,  // Added margin for spacing before the button
+  },
+  button: {
+    backgroundColor: '#4CAF50',
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 8,
+    marginTop: 10,
+    elevation: 3,
+  },
+  buttonText: {
+    fontSize: 16,
+    color: '#fff',
+    textAlign: 'center',
+    fontWeight: '600',
   },
 });
 

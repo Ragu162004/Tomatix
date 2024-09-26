@@ -36,7 +36,7 @@ export const tabs = [
   },
   {
     id: 5,
-    title: "HealthCare",
+    title: "Agro - Bot",
     screen: "HealthCare",
     icon: "robot-outline",
     Component: AgroBot,

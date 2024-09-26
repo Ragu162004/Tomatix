@@ -10,7 +10,7 @@ from tensorflow.keras.models import load_model
 app = Flask(__name__)
 CORS(app)
 
-model = load_model('tomato_disease_model.h5')
+model = load_model('./tomato_disease_model.h5')
 
 class_names = {
     0: 'Bacterial_Spot',
@@ -54,4 +54,4 @@ def predict():
         return jsonify({'error': f"Error processing image: {str(e)}"}), 500
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run( port=5000)
