@@ -2,7 +2,8 @@
 import { CommunityChat, MarketIntelligence, WeatherForecast, AgroBot, HealthCare } from "../Screens";
 import { HomeStack } from "./AppStacks/HomeStack";
 import {DukaanStack} from './AppStacks/DukaanStack';
-import DiseaseDetection from './../Components/Disease Detection/DiseaseDetection';
+import { DiseaseDetection } from "../Components/Disease Detection/DiseaseDetection";
+
 
 export const tabs = [
   {
@@ -31,7 +32,7 @@ export const tabs = [
     title: "Price",
     screen: "Market",
     icon: "currency-inr",
-    Component: MarketIntelligence,
+    Component: DiseaseDetection,
   },
   {
     id: 5,
