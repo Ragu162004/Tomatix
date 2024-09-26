@@ -26,6 +26,13 @@ const ContainerComponent = ({ navigation }) => {
         >
           <Text style={styles.buttonText}>{t('scanPlantDisease')}</Text>
         </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => navigation.navigate('Healthcare')}  // Replace with the actual navigation route name
+          >
+            <Text style={styles.buttonText}>{t('Know more about Tomatoes')}</Text>
+          </TouchableOpacity>
       </View>
     </ScrollView>
   );

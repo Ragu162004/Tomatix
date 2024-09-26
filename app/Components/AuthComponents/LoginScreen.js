@@ -18,7 +18,7 @@ function LoginScreen({navigation}) {
 
         try {
             axios.defaults.withCredentials = true;
-            const res = await axios.post("http://192.168.26.27:5501/user/login", userdata);
+            const res = await axios.post("http://192.168.26.114:5501/user/login", userdata);
             console.log(res.data.message);
             if (res.data.success) {
                 console.log("User : ",res.data.user);
