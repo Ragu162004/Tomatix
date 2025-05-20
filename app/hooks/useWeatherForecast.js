@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import * as Location from 'expo-location';
 import { Alert } from 'react-native';
 
-const weatherapi = 'a52ce42073604dd3bbc132923241508'; // Replace with your actual API key
+const weatherapi = '8050dbb54d78456abe342621242510'; // Replace with your actual API key
 
 const useWeatherForecast = () => {
   const [forecast, setForecast] = useState(null);           // For current weather

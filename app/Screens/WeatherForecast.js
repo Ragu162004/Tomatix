@@ -11,7 +11,7 @@ const WeatherForecast = () => {
     if (loading) {
         return (
             <SafeAreaView style={styles.loading}>
-                <ActivityIndicator size="large" />
+                <ActivityIndicator size= {40} />
             </SafeAreaView>
         );
     }

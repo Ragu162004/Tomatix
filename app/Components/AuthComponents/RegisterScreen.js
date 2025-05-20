@@ -25,7 +25,7 @@ function RegisterScreen() {
     const handleSubmit = async () => {
         console.log(userdata);
         try {
-            const res = await axios.post('http://tomatix-backend-1.onrender.com/user/register', userdata); // Using your local IP
+            const res = await axios.post('https://tomatix-backend-1.onrender.com/user/register', userdata); 
             console.log(res.data.message);
             if (res.data.success) {
                 Alert.alert('Registration Successful');

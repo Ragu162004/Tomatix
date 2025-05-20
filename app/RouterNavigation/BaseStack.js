@@ -14,7 +14,7 @@ const BaseStack = () => {
     {
      try{
       axios.defaults.withCredentials = true;
-      const res = await axios.get("http://192.168.26.27:5501/");
+       const res = await axios.get("http://192.168.136.114:5501/");
       if(res.data.success)
       {
         setIsAuth(true);

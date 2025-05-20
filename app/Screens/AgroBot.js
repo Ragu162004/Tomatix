@@ -14,7 +14,7 @@ const Chatbot = () => {
     setChatHistory(updatedChatHistory);
 
     try {
-      const response = await fetch('https://tomatix-backend-1.onrender.com/generate-content', {
+      const response = await fetch('https://tomatix-backend.onrender.com/generate-content', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

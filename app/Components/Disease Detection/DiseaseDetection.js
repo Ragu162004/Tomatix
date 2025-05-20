@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Button, Image, Alert } from 'react-native';
+import { View, Text, StyleSheet, Button, Image, Alert, ScrollView } from 'react-native';
 import * as ImagePicker from 'expo-image-picker'; 
 import { Platform } from 'react-native';
 
@@ -39,7 +39,7 @@ const DiseaseDetection = () => {
   };
 
   const uploadImage = async (base64Image) => {
-    const apiUrl = 'http://192.168.26.114:5001/predict'; 
+    const apiUrl = 'http://192.168.136.114:5001/predict'; 
     const base64Data = `data:image/jpeg;base64,${base64Image}`;
 
     try {
@@ -65,6 +65,7 @@ const DiseaseDetection = () => {
   };
 
   return (
+    <ScrollView>
     <View style={styles.container}>
       <Text style={styles.header}>TOMATIX</Text>
       <Text style={styles.subheader}>Disease Detection</Text>
@@ -75,6 +76,7 @@ const DiseaseDetection = () => {
 
       {prediction && <Text style={styles.prediction}>Prediction: {prediction}</Text>}
     </View>
+    </ScrollView>
   );
 };
 

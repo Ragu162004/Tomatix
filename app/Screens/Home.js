@@ -17,6 +17,6 @@ export { Home };
 
 const styles = StyleSheet.create({
   mainPage: {
-    
+    paddingBottom: 250
   }
 })

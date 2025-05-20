@@ -95,11 +95,11 @@ function MarketIntelligence() {
     setError('');
     try {
       const response = await fetch(
-        'http://192.168.26.27:5501/getmarketintelligence',
+        'http://192.168.136.114:5501/getmarketintelligence',
         {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'a pplication/json',
           },
           body: JSON.stringify({ statename }),
         }

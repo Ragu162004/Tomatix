@@ -14,7 +14,7 @@ function TomatoView({ navigation }) {
 
   const fetchTomatoes = async () => {
     try {
-      const response = await fetch('https://tomatix-backend-1.onrender.com/tomatoes');
+      const response = await fetch('https://tomatix-backend.onrender.com/tomatoes');
       const data = await response.json();
       setTomatoes(data);
     } catch (error) {
@@ -37,7 +37,7 @@ function TomatoView({ navigation }) {
         <Text style={styles.buttonText}>{t('sellTomatoes')}</Text>
       </Pressable>
       {loading ? (
-        <ActivityIndicator size="large" color="#ff6347" />
+        <ActivityIndicator size={40} color="#ff6347" />
       ) : (
         <ScrollView style={styles.content}>
           {tomatoes.length ? (
@@ -78,7 +78,7 @@ function TomatoAdd({ navigation }) {
     setLoading(true);
     const tomatoData = { TomatoName: tomatoName, quantity: parseInt(quantity), price: parseInt(price), state, contact };
     try {
-      const response = await fetch('https://tomatix-backend-1.onrender.com/tomatoes', {
+      const response = await fetch('https://tomatix-backend.onrender.com/tomatoes', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -121,7 +121,7 @@ function TomatoAdd({ navigation }) {
       <Text>{t('contact')}</Text>
       <TextInput style={styles.input} value={contact} onChangeText={setContact} keyboardType="numeric" />
       {loading ? (
-        <ActivityIndicator size="large" color="#ff6347" />
+        <ActivityIndicator size={40} color="#ff6347" />
       ) : (
         <Pressable style={styles.button} onPress={submitTomato}>
           <Text style={styles.buttonText}>{t('submit')}</Text>
@@ -139,7 +139,7 @@ function FertilizerView({ navigation }) {
 
   const fetchFertilizers = async () => {
     try {
-      const response = await fetch('https://tomatix-backend-1.onrender.com/fertilizers');
+      const response = await fetch('https://tomatix-backend.onrender.com/fertilizers');
       const data = await response.json();
       setFertilizers(data);
     } catch (error) {
@@ -162,7 +162,7 @@ function FertilizerView({ navigation }) {
         <Text style={styles.buttonText}>{t('addFertilizer')}</Text>
       </Pressable>
       {loading ? (
-        <ActivityIndicator size="large" color="#32cd32" />
+        <ActivityIndicator size={40} color="#32cd32" />
       ) : (
         <ScrollView style={styles.content}>
           {fertilizers.length ? (
@@ -201,7 +201,7 @@ function FertilizerAdd({ navigation }) {
     setLoading(true);
     const fertilizerData = { fertilizerName, description, state, contact };
     try {
-      const response = await fetch('https://tomatix-backend-1.onrender.com/fertilizers', {
+      const response = await fetch('https://tomatix-backend.onrender.com/fertilizers', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -242,7 +242,7 @@ function FertilizerAdd({ navigation }) {
       <Text>{t('contact')}</Text>
       <TextInput style={styles.input} value={contact} onChangeText={setContact} keyboardType="numeric" />
       {loading ? (
-        <ActivityIndicator size="large" color="#32cd32" />
+        <ActivityIndicator size={40} color="#32cd32" />
       ) : (
         <Pressable style={styles.button} onPress={submitFertilizer}>
           <Text style={styles.buttonText}>{t('submit')}</Text>
